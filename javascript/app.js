@@ -61,7 +61,8 @@ database.ref().on("child_added", function (childSnapshot) {
 
 // Find how long until the next train comes
     var nextArrival = (((trainsSinceFirst + 1) * frequency) + ftMoment);
-    // var nextArrivalFormat = moment(nextArrival, 'HH:mm');
+    var nextArrivalTime = moment().add(minAway, 'minutes').format('HH:mm');
+
     
     var minAway = nextArrival - timeMoment;
     
@@ -74,7 +75,7 @@ database.ref().on("child_added", function (childSnapshot) {
     var td1 = $('<td>' + name + '</td>');
     var td2 = $('<td>' + destination + '</td>');
     var td3 = $('<td>' + frequency + '</td>');
-    var td4 = $('<td>' + nextArrival + '</td>');
+    var td4 = $('<td>' + nextArrivalTime + '</td>');
     var td5 = $('<td>' + minAway + '</td>');
 
     varDiv.append(td1);
